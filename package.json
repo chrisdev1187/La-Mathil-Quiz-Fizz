@@ -7,7 +7,7 @@
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "client": "vite",
     "server": "node server/index.js",
-    "build": "vite build && xcopy branding dist\\branding /E /I /Y",
+    "build": "vite build",
     "preview": "vite preview",
     "start": "node server/index.js",
     "db:setup": "node scripts/setup-database.mjs",
