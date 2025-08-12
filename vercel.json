@@ -15,6 +15,10 @@
       "dest": "/api/index.js"
     },
     {
+      "src": "/(.*\\.(png|jpg|jpeg|gif|svg|mp3|wav|ogg))",
+      "dest": "/$1"
+    },
+    {
       "src": "/(.*)",
       "dest": "/index.html"
     }

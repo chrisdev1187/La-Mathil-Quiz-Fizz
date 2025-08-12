@@ -324,7 +324,7 @@ function HomePage() {
         {/* Branding Logo */}
         <div className="text-center mb-16">
           <img
-            src="/branding/LogoT.png"
+            src="/LogoT.png"
             alt="Vegas Luck Bingo"
             className="mx-auto max-w-[90%] md:max-w-[600px]"
             style={{ filter: "drop-shadow(0 0 20px rgba(255,215,0,0.4))" }}

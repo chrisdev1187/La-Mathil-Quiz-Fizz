@@ -38,7 +38,7 @@ function HostPage() {
   // Bell sound function for manual winner announcements
   const playBellSound = React.useCallback((winType) => {
     // Play bell sound for manual winner announcements (both line and full card)
-    const audio = new Audio('/branding/bellsound.mp3');
+    const audio = new Audio('/bellsound.mp3');
     audio.play().catch(e => console.error("Error playing bell sound:", e));
   }, []);
 

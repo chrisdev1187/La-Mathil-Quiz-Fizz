@@ -466,7 +466,7 @@ function DisplayPage() {
         <div className="text-center mb-8">
           <div className="mb-4">
             <img
-              src="/branding/LogoT.png"
+              src="/LogoT.png"
               alt="Vegas Luck Bingo"
               className="mx-auto max-h-24 md:max-h-28"
               style={{ filter: "drop-shadow(0 0 16px rgba(255,215,0,0.35))" }}

@@ -58,7 +58,7 @@ function PlayerPage() {
     if (gameMode === 'standard') {
       // Only play bell for full card wins (1st prize)
       if (winType === 'full_card' && !fullCardPrizeClaimed) {
-        const audio = new Audio('/branding/bellsound.mp3');
+        const audio = new Audio('/bellsound.mp3');
         audio.play().catch(e => console.error("Error playing bell sound:", e));
       }
       // Don't play bell for line wins (2nd prize) - disabled after 2nd prize is claimed

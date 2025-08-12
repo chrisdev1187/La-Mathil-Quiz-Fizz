@@ -154,7 +154,7 @@ function PlayerPage() {
             setTimeout(() => setHighlightedRow(null), 3000); // Remove highlight after 3 seconds
           }
           // Play sound
-          const audio = new Audio('/branding/bellsound.mp3'); // Updated path to branding directory
+          const audio = new Audio('/bellsound.mp3'); // Updated path to branding directory
           audio.play().catch(e => console.error("Error playing sound:", e));
         }
       } else {

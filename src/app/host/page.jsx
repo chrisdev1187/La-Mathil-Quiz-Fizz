@@ -1147,7 +1147,7 @@ function HostPage() {
                   >
                     {isFree ? (
                       <img
-                        src="/branding/card.png"
+                        src="/card.png"
                         alt="Free Space"
                         className="max-w-[70%] max-h-[70%] object-contain"
                         style={{ filter: "drop-shadow(0 0 6px rgba(255,215,0,0.35))" }}
