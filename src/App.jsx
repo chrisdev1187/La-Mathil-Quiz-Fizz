@@ -4,12 +4,14 @@ import HomePage from './pages/HomePage'
 import HostPage from './pages/HostPage'
 import PlayerPage from './pages/PlayerPage'
 import DisplayPage from './pages/DisplayPage'
+import TestPage from './pages/TestPage'
 
 function App() {
   return (
     <div className="App">
       <Routes>
         <Route path="/" element={<HomePage />} />
+        <Route path="/test" element={<TestPage />} />
         <Route path="/host" element={<HostPage />} />
         <Route path="/player/:sessionId" element={<PlayerPage />} />
         <Route path="/player/:sessionId/:playerName" element={<PlayerPage />} />
