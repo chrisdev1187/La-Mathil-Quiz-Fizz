@@ -1,91 +1,89 @@
-# Quiz Fizz Bingo Game
+# La Mathil Quiz Fizz 🎯
 
-A real-time multiplayer Bingo game built with React, Express, and Turso (serverless SQLite).
+A modern Bingo game built with React, Vite, and Turso database, featuring real-time gameplay, trivia questions, and multiple game modes.
 
-## Features
+## 🚀 Quick Start
 
-- 🎯 Real-time multiplayer Bingo gameplay
-- 🎲 Multiple game modes (standard, manual)
-- 🏆 Trivia integration with questions and answers
-- 👥 Player management with avatars and nicknames
-- 📊 Game statistics and event tracking
-- 🎨 Modern UI with TailwindCSS
-- ☁️ Serverless deployment ready
-
-## Tech Stack
-
-- **Frontend**: React + Vite + TailwindCSS
-- **Backend**: Express.js
-- **Database**: Turso (serverless SQLite)
-- **Deployment**: Vercel
-
-## Quick Start
-
-### Prerequisites
-
-1. **Turso CLI**: Install and authenticate
+1. **Clone the repository**
    ```bash
-   npm install -g @turso/cli
-   turso auth login
+   git clone https://github.com/chrisdev1187/La-Mathil-Quiz-Fizz.git
+   cd La-Mathil-Quiz-Fizz
    ```
 
-2. **Create Turso Database**:
+2. **Install dependencies**
    ```bash
-   npx turso db create quiz-fizz-bingo
-   npx turso db show --url quiz-fizz-bingo
-   npx turso db tokens create quiz-fizz-bingo
+   npm install
    ```
 
-3. **Configure Environment**:
+3. **Start development server**
    ```bash
-   cp env.example .env
-   # Edit .env with your Turso credentials
+   npm run dev
    ```
 
-### Installation
+4. **Open your browser**
+   - Frontend: `http://localhost:5174/` (or port shown by Vite)
+   - Backend API: `http://localhost:3001/`
 
-```bash
-npm install
-npm run db:setup-turso
-npm run dev
-```
+## 🏗️ Architecture
 
-Open [http://localhost:3000](http://localhost:3000) to start playing!
+- **Frontend**: React + Vite
+- **Backend**: Express.js with Turso (libSQL/SQLite)
+- **Database**: Turso cloud database
+- **Deployment**: Vercel (serverless)
 
-## Migration from SQLite
+## 🎮 Features
 
-If you're migrating from the old SQLite setup:
+- **Bingo Game**: Classic 5x5 bingo with automatic win detection
+- **Multiple Modes**: Standard (auto-prize) and Manual (host-controlled)
+- **Real-time Updates**: Live ball drawing and player interactions
+- **Trivia Integration**: Custom questions with timed answers
+- **Session Management**: Multiple concurrent games
+- **Winner Tracking**: Line and full card prize management
 
-```bash
-npm run migrate:to-turso
-```
+## 📊 Database Schema
 
-For detailed migration instructions, see [TURSO_MIGRATION_GUIDE.md](./TURSO_MIGRATION_GUIDE.md).
+The application uses Turso (libSQL) with the following main tables:
+- `game_sessions`: Game state and configuration
+- `players`: Player information and bingo cards
+- `game_events`: Event logging and history
+- `trivia_questions`: Custom trivia content
+- `player_answers`: Player response tracking
 
-## Available Scripts
+## 🔧 Development
 
-- `npm run dev` - Start development server
+### Available Scripts
+
+- `npm run dev` - Start development server (frontend + backend)
 - `npm run build` - Build for production
-- `npm run start` - Start production server
-- `npm run db:setup-turso` - Setup Turso database schema
-- `npm run db:export` - Export data from SQLite
-- `npm run db:import` - Import data to Turso
+- `npm run preview` - Preview production build
+- `npm run server` - Start backend server only
+- `npm run client` - Start frontend only
+
+### Database Operations
+
+- `npm run db:setup-turso` - Initialize Turso database schema
+- `npm run db:export` - Export data from SQLite to CSV
+- `npm run db:import` - Import CSV data to Turso
 - `npm run db:validate` - Validate data migration
-- `npm run migrate:to-turso` - Complete migration automation
 
-## Deployment
+## 🌐 Deployment
 
-1. **Set Vercel Environment Variables**:
-   - `TURSO_DATABASE_URL`
-   - `TURSO_AUTH_TOKEN`
+The application is configured for Vercel deployment with:
+- Serverless API functions
+- Static frontend assets
+- Environment variable configuration
+- Automatic builds on Git push
 
-2. **Deploy**:
-   ```bash
-   vercel --prod
-   ```
+## 📝 Migration History
 
-## Documentation
+This project was migrated from a legacy SQLite system to Turso, including:
+- Complete database schema translation
+- Stored procedure logic moved to application layer
+- Data migration with validation
+- Serverless architecture adaptation
 
-- [Turso Migration Guide](./TURSO_MIGRATION_GUIDE.md) - Complete migration instructions
-- [Turso Documentation](https://docs.turso.tech) - Database service docs
-- [Vercel Documentation](https://vercel.com/docs) - Deployment platform docs
+---
+
+**Last Updated**: August 12, 2025 - 19:15 UTC  
+**Deployment Status**: Ready for Vercel deployment  
+**Repository**: Fresh clean state with all fixes applied
