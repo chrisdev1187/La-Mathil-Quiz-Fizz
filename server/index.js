@@ -39,8 +39,8 @@ const startServer = (port) => {
     console.log(`🚀 Server running on port ${port}`);
   }).on('error', (err) => {
     if (err.code === 'EADDRINUSE') {
-      console.log(`Port ${port} is already in use, trying another one...`);
-      startServer(0); // Try a random available port
+      console.log(`Port ${port} is already in use, trying port ${port + 1}...`);
+      startServer(port + 1);
     } else {
       console.error("Server error:", err);
     }

@@ -6,7 +6,7 @@ const client = createClient({
   authToken: "eyJhbGciOiJFZERTQSIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NTQ5MjIyNzYsImlkIjoiMzVlZmU4ZjYtODBjMS00MmU3LWFkMTktOGVlMTE0MmVkNmRkIiwicmlkIjoiNjk5OGY3ZGEtZmQ0OC00NTA3LTk4NzUtMzJkZTMzYjczMmIzIn0.s0lEZGFjFQlqFWp3maFzBeLoemeeeS_SUIPhW910KWd2QBw--JTk21RxIJNeQdNWO62T54a-Z-d4Bz52qc1yCQ"
 });
 
-console.log(`🗄️ Turso database connected (src/lib/turso-database.js)`);
+console.log(`🗄️ Turso database connected (server/database.js)`);
 
 // SQLite query helper that mimics postgres template literal syntax
 function sql(strings, ...values) {

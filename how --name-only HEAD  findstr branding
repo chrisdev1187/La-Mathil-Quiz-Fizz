@@ -1,0 +1,73 @@
+[33mcommit f2664b2b476ad0a585f8265b9b10b0ea3113cab6[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m
+Author: chrisdev1187 <christiaanbothma47@gmail.com>
+Date:   Tue Aug 12 16:00:46 2025 +0200
+
+     Initial commit: Complete Turso migration with Bingo game
+    
+    - Migrated from SQLite to Turso (serverless SQLite)
+    - Complete database schema with all tables and indexes
+    - All server routes updated to use Turso client
+    - Data migration scripts for export/import
+    - React + Vite frontend with modern UI
+    - Comprehensive documentation and migration guide
+    - Ready for Vercel deployment
+
+,env
+.gitignore
+.vercelignore
+Export_Data.sql
+Favicon.png
+LogoT.png
+README.md
+TURSO_MIGRATION_GUIDE.md
+Turso_Schema_Create.sql
+branding/Favicon.png
+branding/LogoT.png
+branding/bellsound.mp3
+branding/card.png
+card.png
+complete-project-guide.md
+createxyz-project (19).zip
+index.html
+jsconfig.json
+master-plan.md
+next.config.js
+package-lock.json
+package.json
+package.json.backup
+postcss.config.cjs
+remove-docs.js
+scripts/check-turso-schema.mjs
+scripts/export-sqlite-data.mjs
+scripts/import_data.js
+scripts/migrate-to-turso.mjs
+scripts/recreate-turso-schema.mjs
+scripts/setup-database.mjs
+scripts/setup-turso-database.mjs
+scripts/setup-turso-simple.mjs
+scripts/simple-connection-test.mjs
+scripts/test-turso-connection.mjs
+scripts/validate_data.js
+server/index.js
+server/routes/draw-ball.js
+server/routes/get-game-state.js
+server/routes/host-controls.js
+server/routes/join-game.js
+server/routes/update-player-card.js
+src/App.jsx
+src/app/display/page.jsx
+src/app/host/page.jsx
+src/app/layout.js
+src/app/page.jsx
+src/app/player/page.jsx
+src/globals.css
+src/lib/database.js
+src/lib/turso-database.js
+src/main.jsx
+src/middleware.js
+src/pages/DisplayPage.jsx
+src/pages/HomePage.jsx
+src/pages/HostPage.jsx
+src/pages/PlayerPage.jsx
+tailwind.config.cjs
+vite.config.js
