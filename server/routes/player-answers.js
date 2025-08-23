@@ -54,6 +54,7 @@ async function handler({ action, gameId, playerId, questionId, answerIndex }) {
         }
 
         const playerData = player[0];
+        console.log(`Player data: ID: ${playerData.id}, Nickname: ${playerData.nickname}, Current trivia points: ${playerData.trivia_points || 0}`);
 
         // Check if player already answered this question
         const existingAnswer = await sql`
@@ -76,6 +77,7 @@ async function handler({ action, gameId, playerId, questionId, answerIndex }) {
         }
 
         const questionData = question[0];
+        console.log(`Question data: ID: ${questionData.id}, Correct answer: ${questionData.correct_answer_index}, Points: ${questionData.points}, Time limit: ${questionData.time_limit_seconds}`);
 
         // Calculate response time
         const startTime = new Date(sessionData.question_start_time);
@@ -89,12 +91,14 @@ async function handler({ action, gameId, playerId, questionId, answerIndex }) {
 
         // Determine if answer is correct
         const isCorrect = answerIndex === questionData.correct_answer_index;
+        console.log(`Answer check: Player answered ${answerIndex}, Correct answer is ${questionData.correct_answer_index}, Is correct: ${isCorrect}`);
 
         // Calculate points earned (bonus for fast answers)
         let pointsEarned = 0;
         if (isCorrect) {
           const timeBonus = Math.max(0, Math.floor((questionData.time_limit_seconds - responseTimeSeconds) / 2));
           pointsEarned = questionData.points + timeBonus;
+          console.log(`Points calculation: Base points: ${questionData.points}, Time bonus: ${timeBonus}, Total earned: ${pointsEarned}`);
         }
 
         // Insert answer
@@ -105,7 +109,9 @@ async function handler({ action, gameId, playerId, questionId, answerIndex }) {
         `;
 
         // Update player's trivia points
-        const newTriviaPoints = playerData.trivia_points + pointsEarned;
+        const newTriviaPoints = (playerData.trivia_points || 0) + pointsEarned;
+        console.log(`Scoring: Player ${playerData.nickname} (ID: ${playerData.id}) - Current points: ${playerData.trivia_points || 0}, Earned: ${pointsEarned}, New total: ${newTriviaPoints}`);
+        
         await sql`
           UPDATE players 
           SET trivia_points = ${newTriviaPoints}, updated_at = CURRENT_TIMESTAMP

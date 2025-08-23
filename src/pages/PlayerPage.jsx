@@ -17,6 +17,7 @@ function PlayerPage() {
   });
   const [availableTeams, setAvailableTeams] = React.useState([]);
   const [selectedAnswer, setSelectedAnswer] = React.useState(null);
+  const [answerLocked, setAnswerLocked] = React.useState(false);
   const [timeRemaining, setTimeRemaining] = React.useState(0);
   const [questionTimer, setQuestionTimer] = React.useState(null);
   const [isJoining, setIsJoining] = React.useState(false);
@@ -65,12 +66,13 @@ function PlayerPage() {
     if (gameState?.session?.timeRemaining !== undefined) {
       setTimeRemaining(gameState.session.timeRemaining);
     }
-  }, [gameState?.session?.timeRemaining]);
+  }, [gameState?.session?.timeRemaining, gameState?.session?.currentQuestionStatus]);
 
   // Reset selected answer when question changes
   React.useEffect(() => {
     if (gameState?.currentQuestion?.id) {
       setSelectedAnswer(null);
+      setAnswerLocked(false); // Reset lock when new question starts
     }
   }, [gameState?.currentQuestion?.id]);
 
@@ -114,8 +116,8 @@ function PlayerPage() {
   }, []);
 
   const selectAnswer = (answerIndex) => {
-    if (timeRemaining <= 0 || selectedAnswer !== null) {
-      return; // Prevent selection if time is up or already answered
+    if (timeRemaining <= 0 || answerLocked) {
+      return; // Prevent selection if time is up or answer is locked
     }
     setSelectedAnswer(answerIndex);
   };
@@ -141,7 +143,9 @@ function PlayerPage() {
       const result = await response.json();
       if (result.success) {
         console.log("Answer locked in successfully:", result);
-        // Keep selectedAnswer set to show it's locked in
+        // Mark answer as locked in - player cannot change it
+        setAnswerLocked(true);
+        setError(null);
       } else {
         console.error("Failed to lock in answer:", result.error);
         setError(result.error || "Failed to lock in answer");
@@ -1410,11 +1414,13 @@ function PlayerPage() {
                           <button
                             key={index}
                             onClick={() => selectAnswer(index)}
-                            disabled={timeRemaining === 0 || selectedAnswer !== null}
+                            disabled={timeRemaining === 0 || answerLocked}
                             className={`p-4 rounded-xl border-2 font-bold text-lg transition-all duration-300 ${
                               selectedAnswer === index
-                                ? "bg-[#00BFFF] border-[#00BFFF] text-white"
-                                : selectedAnswer !== null
+                                ? answerLocked
+                                  ? "bg-green-600 border-green-600 text-white"
+                                  : "bg-[#00BFFF] border-[#00BFFF] text-white"
+                                : answerLocked
                                 ? "bg-gray-600 border-gray-600 text-gray-400 cursor-not-allowed"
                                 : timeRemaining === 0
                                 ? "bg-red-600 border-red-600 text-red-300 cursor-not-allowed"
@@ -1430,7 +1436,7 @@ function PlayerPage() {
                       </div>
 
                       {/* Lock In Button */}
-                      {selectedAnswer !== null && timeRemaining > 0 && (
+                      {selectedAnswer !== null && timeRemaining > 0 && !answerLocked && (
                         <div className="text-center">
                           <button
                             onClick={lockInAnswer}
@@ -1442,13 +1448,24 @@ function PlayerPage() {
                         </div>
                       )}
 
-                      {selectedAnswer !== null && (
+                      {selectedAnswer !== null && !answerLocked && (
                         <div className="bg-blue-500/20 border border-blue-500 rounded-xl p-4 text-center">
                           <div className="text-blue-300 font-bold">
                             🎯 Answer selected: {String.fromCharCode(65 + selectedAnswer)}
                           </div>
                           <div className="text-blue-200 text-sm mt-1">
                             Click "LOCK IN ANSWER" to submit your final answer
+                          </div>
+                        </div>
+                      )}
+
+                      {answerLocked && (
+                        <div className="bg-green-500/20 border border-green-500 rounded-xl p-4 text-center">
+                          <div className="text-green-300 font-bold">
+                            ✅ Answer locked in: {String.fromCharCode(65 + selectedAnswer)}
+                          </div>
+                          <div className="text-green-200 text-sm mt-1">
+                            Your answer has been submitted and cannot be changed
                           </div>
                         </div>
                       )}

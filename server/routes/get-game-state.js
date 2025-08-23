@@ -106,7 +106,7 @@ async function handler({ gameId, playerId, action }) {
     let playerData = null;
     if (playerId) {
       const playerResult = await sql`
-        SELECT id, nickname, avatar, bingo_card, marked_cells, wins, status
+        SELECT id, nickname, avatar, bingo_card, marked_cells, wins, trivia_points, status
         FROM players 
         WHERE id = ${playerId} AND session_id = ${sessionId}
       `;
@@ -181,6 +181,7 @@ async function handler({ gameId, playerId, action }) {
             bingoCard: JSON.parse(playerData.bingo_card || '[]'),
             markedCells: JSON.parse(playerData.marked_cells || '[]'),
             wins: playerData.wins,
+            triviaPoints: playerData.trivia_points,
             status: playerData.status,
           }
         : null,

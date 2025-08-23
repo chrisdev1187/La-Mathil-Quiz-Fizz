@@ -1312,7 +1312,8 @@ async function handler({ action, gameId, playerId, gameMode, bingoMode, question
 
           // Start the next question
           const startTime = new Date();
-          const endTime = new Date(startTime.getTime() + (30 * 1000)); // Global 30 seconds
+          const timeLimit = nextQuestion.time_limit_seconds || 30;
+          const endTime = new Date(startTime.getTime() + (timeLimit * 1000));
 
           // Update session with current question
           await sql`
@@ -1322,7 +1323,7 @@ async function handler({ action, gameId, playerId, gameMode, bingoMode, question
               current_question_status = 'active',
               question_start_time = ${startTime.toISOString()},
               question_end_time = ${endTime.toISOString()},
-              time_remaining = 30,
+              time_remaining = ${timeLimit},
               updated_at = CURRENT_TIMESTAMP
             WHERE id = ${sessionId}
           `;

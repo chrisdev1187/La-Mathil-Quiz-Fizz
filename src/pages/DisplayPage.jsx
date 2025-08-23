@@ -97,7 +97,7 @@ function DisplayPage() {
     if (gameState?.session?.timeRemaining !== undefined) {
       setTimeRemaining(gameState.session.timeRemaining);
     }
-  }, [gameState?.session?.timeRemaining]);
+  }, [gameState?.session?.timeRemaining, gameState?.session?.currentQuestionStatus]);
 
   // Load game state
   React.useEffect(() => {
