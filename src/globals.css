@@ -1,0 +1,140 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-20px) rotate(180deg); }
+}
+
+@keyframes float-up {
+  0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: translateY(-20px) rotate(360deg); opacity: 0; }
+}
+
+@keyframes neon-glow {
+  0%, 100% { 
+    filter: brightness(1) saturate(1);
+  }
+  50% { 
+    filter: brightness(1.3) saturate(1.5);
+  }
+}
+
+@keyframes neon-pulse {
+  0%, 100% { 
+    opacity: 0.8;
+    box-shadow: 0 0 10px currentColor;
+  }
+  50% { 
+    opacity: 1;
+    box-shadow: 0 0 20px currentColor, 0 0 40px currentColor;
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-float-up {
+  animation: float-up 20s linear infinite;
+}
+
+.animate-neon-glow {
+  animation: neon-glow 3s ease-in-out infinite;
+}
+
+.animate-neon-pulse {
+  animation: neon-pulse 2s ease-in-out infinite;
+}
+
+/* Button hover effects */
+button:hover {
+  filter: brightness(1.1);
+}
+
+/* Neon text effects */
+.text-shadow-neon {
+  text-shadow: 0 0 5px currentColor, 0 0 10px currentColor, 0 0 15px currentColor;
+}
+
+/* --- HomePage.jsx specific styles --- */
+@keyframes pulse-yellow {
+  0%, 100% { box-shadow: 0 0 15px #FFD700; }
+  50% { box-shadow: 0 0 25px #FFD700, 0 0 40px #FFD700; }
+}
+
+@keyframes pulse-pink {
+  0%, 100% { box-shadow: 0 0 15px #FF007F; }
+  50% { box-shadow: 0 0 25px #FF007F, 0 0 40px #FF007F; }
+}
+
+@keyframes pulse-blue {
+  0%, 100% { box-shadow: 0 0 15px #00BFFF; }
+  50% { box-shadow: 0 0 25px #00BFFF, 0 0 40px #00BFFF; }
+}
+
+@keyframes wiggle {
+  0%, 7% {
+    transform: rotateZ(0);
+  }
+  15% {
+    transform: rotateZ(-15deg);
+  }
+  20% {
+    transform: rotateZ(10deg);
+  }
+  25% {
+    transform: rotateZ(-10deg);
+  }
+  30% {
+    transform: rotateZ(6deg);
+  }
+  35% {
+    transform: rotateZ(-3deg);
+  }
+  40%, 100% {
+    transform: rotateZ(0);
+  }
+}
+
+.animate-pulse-yellow {
+  animation: pulse-yellow 2s ease-in-out infinite;
+}
+
+.animate-pulse-pink {
+  animation: pulse-pink 2s ease-in-out infinite;
+}
+
+.animate-pulse-blue {
+  animation: pulse-blue 2s ease-in-out infinite;
+}
+
+.animate-wiggle {
+  animation: wiggle 2s linear infinite;
+}
+
+/* --- HostPage.jsx specific styles --- */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.animate-spin {
+  animation: spin 2s linear infinite;
+}
+
+/* --- PlayerPage.jsx specific styles (join form) --- */
+/* These are duplicates, already in global.css, but I'll leave this comment for clarity */
+
+/* --- DisplayPage.jsx specific styles --- */
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.animate-bounce {
+  animation: bounce 0.6s infinite ease-in-out;
+}
